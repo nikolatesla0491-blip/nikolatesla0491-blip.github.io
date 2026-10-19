@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cattery Flaurum — Питомник Британских Кошек Окраса Золотая Шиншилла</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Cormorant Garamond & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        amberGold: {
+                            50: '#FAF7F2',
+                            100: '#F5EFE0',
+                            200: '#EBDCB9',
+                            300: '#E0C78F',
+                            400: '#D6B163',
+                            500: '#C2983B',
+                            600: '#9E7728',
+                            700: '#7B591C',
+                            800: '#593E13',
+                            900: '#38250A',
+                        },
+                        emeraldEye: {
+                            500: '#0F766E',
+                            600: '#0D9488',
+                        },
+                        darkStone: '#1C1917',
+                        warmCream: '#FAF7F2'
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .font-serif-title {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(224, 199, 143, 0.4);
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #B8860B 0%, #D4AF37 40%, #C2983B 70%, #8B6508 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-border-glow {
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-warmCream text-stone-800 font-sans antialiased selection:bg-amberGold-500 selection:text-white">
+
+    <!-- NAVIGATION HEADER -->
+    <header id="main-header" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300 bg-white/90 backdrop-blur-md border-b border-amberGold-200/50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 rounded-full bg-stone-900 text-amberGold-400 flex items-center justify-center text-2xl font-serif font-bold shadow-md border border-amberGold-300/40 group-hover:scale-105 transition-transform">
+                        F
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-serif text-2xl font-bold tracking-wider text-stone-900 leading-none">CATTERY FLAURUM</span>
+                        <span class="text-[10px] tracking-widest uppercase text-amberGold-600 font-semibold mt-1">Золотая Шиншилла • Британская порода</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="#about" class="text-sm font-medium text-stone-600 hover:text-amberGold-600 transition-colors">О питомнике</a>
+                    <a href="#cats" class="text-sm font-medium text-stone-600 hover:text-amberGold-600 transition-colors">Наши кошки</a>
+                    <a href="#kittens" class="text-sm font-medium text-stone-600 hover:text-amberGold-600 transition-colors">Котята</a>
+                    <a href="#gallery" class="text-sm font-medium text-stone-600 hover:text-amberGold-600 transition-colors">Галерея</a>
+                    <a href="#contacts" class="text-sm font-medium text-stone-600 hover:text-amberGold-600 transition-colors">Контакты</a>
+                </nav>
+
+                <!-- Action Button & Mobile Toggle -->
+                <div class="flex items-center gap-4">
+                    <button onclick="openBookingModal()" class="hidden sm:inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-stone-900 text-amberGold-300 border border-amberGold-400/40 text-sm font-medium shadow-sm hover:bg-stone-800 hover:border-amberGold-400 transition-all focus:outline-none">
+                        <i class="fa-solid fa-crown mr-2 text-amberGold-400 text-xs"></i> Забронировать
+                    </button>
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-stone-700 hover:text-amberGold-600 hover:bg-stone-100 focus:outline-none" aria-label="Toggle Menu">
+                        <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-amberGold-200/80 px-4 pt-2 pb-6 space-y-3">
+            <a href="#about" class="mobile-link block py-2 text-stone-700 font-medium hover:text-amberGold-600">О питомнике</a>
+            <a href="#cats" class="mobile-link block py-2 text-stone-700 font-medium hover:text-amberGold-600">Наши кошки</a>
+            <a href="#kittens" class="mobile-link block py-2 text-stone-700 font-medium hover:text-amberGold-600">Котята</a>
+            <a href="#gallery" class="mobile-link block py-2 text-stone-700 font-medium hover:text-amberGold-600">Галерея</a>
+            <a href="#contacts" class="mobile-link block py-2 text-stone-700 font-medium hover:text-amberGold-600">Контакты</a>
+            <div class="pt-2">
+                <button onclick="openBookingModal(); toggleMobileMenu();" class="w-full py-3 rounded-xl bg-stone-900 text-amberGold-300 text-center font-medium shadow border border-amberGold-400/40">
+                    Забронировать котенка
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative pt-28 pb-16 md:pt-36 md:pb-28 overflow-hidden bg-gradient-to-b from-amberGold-100/60 via-warmCream to-white">
+        <div class="absolute inset-0 z-0 opacity-40 pointer-events-none">
+            <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-amberGold-200 blur-3xl"></div>
+            <div class="absolute top-1/2 -left-24 w-80 h-80 rounded-full bg-amberGold-300/30 blur-3xl"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Text Content -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amberGold-100 border border-amberGold-300/60 text-amberGold-800 text-xs sm:text-sm font-semibold tracking-wide uppercase">
+                        <i class="fa-solid fa-gem text-amberGold-600"></i> Элитные драгоценные окрасы
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-stone-900 leading-tight">
+                        Cattery Flaurum <span class="gold-gradient-text block mt-1">Золотая Шиншилла</span>
+                    </h1>
+                    <p class="text-base sm:text-lg text-stone-600 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                        Монопородный питомник британских короткошерстных и длинношерстных кошек эксклюзивных золотых окрасов <span class="font-semibold text-stone-800">NY 11, NY 12, NY 25</span> с завораживающими изумрудными глазами.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#kittens" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-stone-900 text-amberGold-300 font-medium shadow-lg hover:bg-stone-800 hover:shadow-xl transition-all text-center border border-amberGold-400/30">
+                            Выбрать котенка <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                        </a>
+                        <a href="#about" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-white text-stone-800 border border-amberGold-300/80 font-medium hover:bg-amberGold-50 transition-all text-center">
+                            О нашем питомнике
+                        </a>
+                    </div>
+                    
+                    <!-- Feature Highlights -->
+                    <div class="pt-8 grid grid-cols-3 gap-4 border-t border-amberGold-200/80 max-w-lg mx-auto lg:mx-0">
+                        <div>
+                            <p class="font-serif text-2xl sm:text-3xl font-bold text-stone-900">NY 11 / 12</p>
+                            <p class="text-xs sm:text-sm text-stone-500">Золотой затушеванный</p>
+                        </div>
+                        <div>
+                            <p class="font-serif text-2xl sm:text-3xl font-bold text-stone-900">100%</p>
+                            <p class="text-xs sm:text-sm text-stone-500">Изумрудные глаза</p>
+                        </div>
+                        <div>
+                            <p class="font-serif text-2xl sm:text-3xl font-bold text-stone-900">WCF</p>
+                            <p class="text-xs sm:text-sm text-stone-500">Международная система</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Image Showcase -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <div class="absolute -inset-3 rounded-3xl bg-gradient-to-tr from-amberGold-300/50 via-amberGold-200/30 to-amberGold-400/40 blur-xl"></div>
+                        <div class="relative bg-white p-3 rounded-2xl shadow-2xl border border-amberGold-200">
+                            <img src="1000448723.jpg" 
+                                 alt="Британская кошка золотая шиншилла Cattery Flaurum" 
+                                 class="w-full h-[420px] sm:h-[480px] object-cover rounded-xl shadow-inner cursor-pointer hover:opacity-95 transition-opacity"
+                                 onclick="openLightbox('1000448723.jpg')">
+                            
+                            <!-- Floating Info Overlay -->
+                            <div class="absolute bottom-6 left-6 right-6 glass-card p-4 rounded-xl shadow-lg border border-amberGold-300/50">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-amberGold-500/20 text-amberGold-700 flex items-center justify-center font-bold">
+                                        <i class="fa-solid fa-award text-amberGold-600"></i>
+                                    </div>
+                                    <div>
+                                        <h2 class="text-sm font-bold text-stone-900">Изумрудный взгляд и золотая шубка</h2>
+                                        <p class="text-xs text-stone-600">Производитель питомника Cattery Flaurum</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs sm:text-sm font-semibold tracking-widest text-amberGold-600 uppercase">Окрас роскоши и гармонии</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mt-2">Добро пожаловать в Cattery Flaurum</h2>
+                <div class="w-16 h-1 bg-amberGold-400 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="p-8 rounded-2xl bg-warmCream border border-amberGold-200/60 shadow-sm hover:shadow-md transition-shadow group">
+                    <div class="w-14 h-14 rounded-xl bg-amberGold-100 text-amberGold-700 flex items-center justify-center text-2xl mb-6 group-hover:bg-stone-900 group-hover:text-amberGold-300 transition-colors">
+                        <i class="fa-solid fa-sun"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-stone-900 mb-3">Солнечный окрас NY 11/12</h3>
+                    <p class="text-stone-600 text-sm leading-relaxed">
+                        Золотая шиншилла — один из самых редких и ценных окрасов. Каждая шерстинка имеет подшерсток абрикосово-золотого тона с легким темным типингом.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="p-8 rounded-2xl bg-warmCream border border-amberGold-200/60 shadow-sm hover:shadow-md transition-shadow group">
+                    <div class="w-14 h-14 rounded-xl bg-amberGold-100 text-amberGold-700 flex items-center justify-center text-2xl mb-6 group-hover:bg-stone-900 group-hover:text-amberGold-300 transition-colors">
+                        <i class="fa-solid fa-eye"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-stone-900 mb-3">Яркие изумрудные глаза</h3>
+                    <p class="text-stone-600 text-sm leading-relaxed">
+                        Визитная карточка золотых шиншилл Flaurum — большие, круглые, глубокие зеленые глаза с темной подводкой, напоминающей макияж.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="p-8 rounded-2xl bg-warmCream border border-amberGold-200/60 shadow-sm hover:shadow-md transition-shadow group">
+                    <div class="w-14 h-14 rounded-xl bg-amberGold-100 text-amberGold-700 flex items-center justify-center text-2xl mb-6 group-hover:bg-stone-900 group-hover:text-amberGold-300 transition-colors">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-stone-900 mb-3">Ласковый темперамент</h3>
+                    <p class="text-stone-600 text-sm leading-relaxed">
+                        Наши кошки отличаются удивительно кротким, аристократичным и общительным характером. Они идеально адаптированы для жизни в семье.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Story Banner -->
+            <div class="mt-16 bg-stone-900 rounded-3xl p-8 sm:p-12 text-white shadow-xl relative overflow-hidden border border-amberGold-400/30">
+                <div class="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-amberGold-500/10 blur-3xl pointer-events-none"></div>
+                <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-8 space-y-4">
+                        <span class="text-amberGold-400 text-xs font-semibold uppercase tracking-widest">Профессиональное разведение</span>
+                        <h3 class="font-serif text-2xl sm:text-3xl font-bold">Здоровье, генетика и любовь к каждой кошке</h3>
+                        <p class="text-stone-300 text-sm sm:text-base leading-relaxed">
+                            В Cattery Flaurum мы уделяем главное внимание сохранению идеального типа, плотного плюшевого подшерстка и крепкого здоровья. Все питомцы проходят всестороннее ветеринарное обследование, чипирование и полную вакцинацию.
+                        </p>
+                    </div>
+                    <div class="lg:col-span-4 flex justify-center lg:justify-end">
+                        <div class="inline-flex items-center gap-4 bg-white/10 backdrop-blur-md px-6 py-4 rounded-2xl border border-amberGold-400/30">
+                            <i class="fa-solid fa-certificate text-3xl text-amberGold-400"></i>
+                            <div>
+                                <p class="text-xs text-stone-300">Пакет документов</p>
+                                <p class="font-bold text-sm text-white">Родословная WCF & Ветпаспорт</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OUR CATS SECTION (PRODUCERS) -->
+    <section id="cats" class="py-20 bg-warmCream border-t border-amberGold-200/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-xs sm:text-sm font-semibold tracking-widest text-amberGold-600 uppercase">Гордость Cattery Flaurum</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mt-2">Наши взрослые кошки и коты</h2>
+                <p class="text-stone-600 text-sm mt-3">Производители с безупречным типом и изумрудными глазами</p>
+            </div>
+
+            <!-- Adult Cats Grid using photos 1000448723.jpg, 1000449467.jpg, 1000218463.jpg -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="adults-container">
+                
+                <!-- Adult Cat 1 -->
+                <div class="adult-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-amberGold-200/70 flex flex-col group">
+                    <div class="relative h-80 overflow-hidden cursor-pointer" onclick="openLightbox('1000448723.jpg')">
+                        <img src="1000448723.jpg" 
+                             alt="Flaurum Golden Royalty" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-4 left-4 bg-stone-900/85 backdrop-blur-md text-amberGold-300 text-xs px-3 py-1 rounded-full font-semibold border border-amberGold-400/30">
+                            Кошка-производитель
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-serif text-2xl font-bold text-stone-900">Flaurum Golden Royalty</h3>
+                                <span class="text-xs px-2.5 py-1 bg-amberGold-100 text-amberGold-800 rounded-md font-semibold">NY 11</span>
+                            </div>
+                            <p class="text-xs text-amberGold-700 font-semibold mb-3">Окрас: Британская Золотая Шиншилла</p>
+                            <p class="text-stone-600 text-sm mb-4">
+                                Эталонный представитель породы: выразительные изумрудные глаза, щечки, компактный мощный корпус и идеальный подшерсток.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-stone-100 flex justify-between items-center text-xs text-stone-500">
+                            <span>Глаза: Изумрудно-зеленые</span>
+                            <span>Тип: BRI NY 11</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Adult Cat 2 -->
+                <div class="adult-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-amberGold-200/70 flex flex-col group">
+                    <div class="relative h-80 overflow-hidden cursor-pointer" onclick="openLightbox('1000449467.jpg')">
+                        <img src="1000449467.jpg" 
+                             alt="Flaurum Golden Amber" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-4 left-4 bg-stone-900/85 backdrop-blur-md text-amberGold-300 text-xs px-3 py-1 rounded-full font-semibold border border-amberGold-400/30">
+                            Кот-производитель
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-serif text-2xl font-bold text-stone-900">Flaurum Golden Amber</h3>
+                                <span class="text-xs px-2.5 py-1 bg-amberGold-100 text-amberGold-800 rounded-md font-semibold">NY 12</span>
+                            </div>
+                            <p class="text-xs text-amberGold-700 font-semibold mb-3">Окрас: Золотой затушеванный шиншилловый</p>
+                            <p class="text-stone-600 text-sm mb-4">
+                                Игривый, открытый темперамент, яркая шубка солнечного оттенка и превосходная генетическая линия.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-stone-100 flex justify-between items-center text-xs text-stone-500">
+                            <span>Глаза: Глубокий изумруд</span>
+                            <span>Тип: BRI NY 12</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Adult Cat 3 -->
+                <div class="adult-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-amberGold-200/70 flex flex-col group">
+                    <div class="relative h-80 overflow-hidden cursor-pointer" onclick="openLightbox('1000218463.jpg')">
+                        <img src="1000218463.jpg" 
+                             alt="Flaurum Velvet Honey" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-4 left-4 bg-stone-900/85 backdrop-blur-md text-amberGold-300 text-xs px-3 py-1 rounded-full font-semibold border border-amberGold-400/30">
+                            Кошка-производитель
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-serif text-2xl font-bold text-stone-900">Flaurum Velvet Honey</h3>
+                                <span class="text-xs px-2.5 py-1 bg-amberGold-100 text-amberGold-800 rounded-md font-semibold">NY 25</span>
+                            </div>
+                            <p class="text-xs text-amberGold-700 font-semibold mb-3">Окрас: Золотой тикированный</p>
+                            <p class="text-stone-600 text-sm mb-4">
+                                Исключительно плюшевая на ощупь шерсть, гармоничные британские пропорции и ласковый характер.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-stone-100 flex justify-between items-center text-xs text-stone-500">
+                            <span>Глаза: Зеленые</span>
+                            <span>Тип: BRI NY 25</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- KITTENS SECTION -->
+    <section id="kittens" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-xs sm:text-sm font-semibold tracking-widest text-amberGold-600 uppercase">Найдите своего плюшевого друга</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mt-2">Доступные котята</h2>
+                <p class="text-stone-600 text-sm mt-3">Малыши передаются в новый дом привитыми, социализированными и с полным пакетом документов</p>
+            </div>
+
+            <!-- Status Filter -->
+            <div class="flex justify-center gap-2 sm:gap-4 mb-10">
+                <button onclick="filterKittens('all')" class="kitten-filter-btn px-5 py-2 rounded-full text-xs sm:text-sm font-medium bg-stone-900 text-amberGold-300 shadow-sm transition-all border border-amberGold-400/30">Все котята</button>
+                <button onclick="filterKittens('available')" class="kitten-filter-btn px-5 py-2 rounded-full text-xs sm:text-sm font-medium bg-stone-100 text-stone-700 hover:bg-amberGold-100 transition-all">Свободны</button>
+                <button onclick="filterKittens('reserved')" class="kitten-filter-btn px-5 py-2 rounded-full text-xs sm:text-sm font-medium bg-stone-100 text-stone-700 hover:bg-amberGold-100 transition-all">Забронированы</button>
+            </div>
+
+            <!-- Kittens Grid using photos 1000379369.jpg, 1000411422.jpg, 1000416482.jpg -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="kittens-container">
+                
+                <!-- Kitten 1 -->
+                <div class="kitten-card bg-warmCream rounded-2xl overflow-hidden border border-amberGold-200/80 shadow-sm hover:shadow-lg transition-all flex flex-col" data-status="available">
+                    <div class="relative h-80 overflow-hidden cursor-pointer" onclick="openLightbox('1000379369.jpg')">
+                        <img src="1000379369.jpg" 
+                             alt="Котенок Flaurum Sunny Fluff" 
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                        <span class="absolute top-4 right-4 bg-emerald-600 text-white text-xs px-3 py-1 rounded-full font-semibold shadow">
+                            Свободен
+                        </span>
+                        <span class="absolute bottom-4 left-4 bg-stone-900/70 backdrop-blur-sm text-amberGold-300 text-xs px-3 py-1 rounded-md">
+                            Пушистое золото • Мальчик
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-serif text-2xl font-bold text-stone-900 mb-1">Flaurum Sunny Fluff</h3>
+                            <p class="text-xs text-amberGold-700 font-semibold mb-3">Британская золотая шиншилла (NY 12)</p>
+                            
+                            <div class="space-y-1.5 text-xs text-stone-600 mb-6">
+                                <div class="flex justify-between"><span>Пол:</span> <span class="font-medium text-stone-900">Мальчик</span></div>
+                                <div class="flex justify-between"><span>Класс:</span> <span class="font-medium text-stone-900">Шоу / В домашние любимцы</span></div>
+                                <div class="flex justify-between"><span>Прививки:</span> <span class="font-medium text-stone-900">Сделаны по возрасту</span></div>
+                            </div>
+                        </div>
+
+                        <button onclick="openBookingModal('Flaurum Sunny Fluff')" class="w-full py-3 rounded-xl bg-stone-900 text-amberGold-300 text-sm font-medium hover:bg-stone-800 transition-colors shadow-sm flex items-center justify-center gap-2 border border-amberGold-400/30">
+                            <i class="fa-solid fa-heart text-amberGold-400 text-xs"></i> Забронировать малыша
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Kitten 2 -->
+                <div class="kitten-card bg-warmCream rounded-2xl overflow-hidden border border-amberGold-200/80 shadow-sm hover:shadow-lg transition-all flex flex-col" data-status="available">
+                    <div class="relative h-80 overflow-hidden cursor-pointer" onclick="openLightbox('1000411422.jpg')">
+                        <img src="1000411422.jpg" 
+                             alt="Котенок Flaurum Golden Miracle" 
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                        <span class="absolute top-4 right-4 bg-emerald-600 text-white text-xs px-3 py-1 rounded-full font-semibold shadow">
+                            Свободна
+                        </span>
+                        <span class="absolute bottom-4 left-4 bg-stone-900/70 backdrop-blur-sm text-amberGold-300 text-xs px-3 py-1 rounded-md">
+                            Золотая шиншилла • Девочка
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-serif text-2xl font-bold text-stone-900 mb-1">Flaurum Golden Miracle</h3>
+                            <p class="text-xs text-amberGold-700 font-semibold mb-3">Британская золотая шиншилла (NY 11)</p>
+                            
+                            <div class="space-y-1.5 text-xs text-stone-600 mb-6">
+                                <div class="flex justify-between"><span>Пол:</span> <span class="font-medium text-stone-900">Девочка</span></div>
+                                <div class="flex justify-between"><span>Класс:</span> <span class="font-medium text-stone-900">Пэт / Шоу</span></div>
+                                <div class="flex justify-between"><span>Прививки:</span> <span class="font-medium text-stone-900">Полная вакцинация</span></div>
+                            </div>
+                        </div>
+
+                        <button onclick="openBookingModal('Flaurum Golden Miracle')" class="w-full py-3 rounded-xl bg-stone-900 text-amberGold-300 text-sm font-medium hover:bg-stone-800 transition-colors shadow-sm flex items-center justify-center gap-2 border border-amberGold-400/30">
+                            <i class="fa-solid fa-heart text-amberGold-400 text-xs"></i> Забронировать девочку
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Kitten 3 -->
+                <div class="kitten-card bg-warmCream rounded-2xl overflow-hidden border border-amberGold-200/80 shadow-sm hover:shadow-lg transition-all flex flex-col" data-status="reserved">
+                    <div class="relative h-80 overflow-hidden cursor-pointer" onclick="openLightbox('1000416482.jpg')">
+                        <img src="1000416482.jpg" 
+                             alt="Котенок Flaurum Honey Bear" 
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                        <span class="absolute top-4 right-4 bg-amber-600 text-white text-xs px-3 py-1 rounded-full font-semibold shadow">
+                            Забронирован
+                        </span>
+                        <span class="absolute bottom-4 left-4 bg-stone-900/70 backdrop-blur-sm text-amberGold-300 text-xs px-3 py-1 rounded-md">
+                            Золотая шиншилла • Мальчик
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-serif text-2xl font-bold text-stone-900 mb-1">Flaurum Honey Bear</h3>
+                            <p class="text-xs text-amberGold-700 font-semibold mb-3">Британская золотая шиншилла (NY 11)</p>
+                            
+                            <div class="space-y-1.5 text-xs text-stone-600 mb-6">
+                                <div class="flex justify-between"><span>Пол:</span> <span class="font-medium text-stone-900">Мальчик</span></div>
+                                <div class="flex justify-between"><span>Статус:</span> <span class="font-medium text-amber-700">Ожидает переезда</span></div>
+                                <div class="flex justify-between"><span>Прививки:</span> <span class="font-medium text-stone-900">Сделаны</span></div>
+                            </div>
+                        </div>
+
+                        <button disabled class="w-full py-3 rounded-xl bg-stone-300 text-stone-500 text-sm font-medium cursor-not-allowed">
+                            Забронирован
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section id="gallery" class="py-20 bg-warmCream border-t border-amberGold-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-xs sm:text-sm font-semibold tracking-widest text-amberGold-600 uppercase">Фотогалерея Cattery Flaurum</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mt-2">Кадры с нашими питомцами</h2>
+                <p class="text-stone-600 text-sm mt-3">Нажмите на любую фотографию для полноэкранного просмотра</p>
+            </div>
+
+            <!-- Gallery Grid with all 6 provided images -->
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+                
+                <div class="cursor-pointer overflow-hidden rounded-2xl shadow-sm h-72 group relative border border-amberGold-200" onclick="openLightbox('1000448723.jpg')">
+                    <img src="1000448723.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Cattery Flaurum Photo 1">
+                    <div class="absolute inset-0 bg-stone-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-amberGold-300">
+                        <i class="fa-solid fa-magnifying-glass-plus text-3xl"></i>
+                    </div>
+                </div>
+
+                <div class="cursor-pointer overflow-hidden rounded-2xl shadow-sm h-72 group relative border border-amberGold-200" onclick="openLightbox('1000449467.jpg')">
+                    <img src="1000449467.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Cattery Flaurum Photo 2">
+                    <div class="absolute inset-0 bg-stone-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-amberGold-300">
+                        <i class="fa-solid fa-magnifying-glass-plus text-3xl"></i>
+                    </div>
+                </div>
+
+                <div class="cursor-pointer overflow-hidden rounded-2xl shadow-sm h-72 group relative border border-amberGold-200" onclick="openLightbox('1000218463.jpg')">
+                    <img src="1000218463.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Cattery Flaurum Photo 3">
+                    <div class="absolute inset-0 bg-stone-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-amberGold-300">
+                        <i class="fa-solid fa-magnifying-glass-plus text-3xl"></i>
+                    </div>
+                </div>
+
+                <div class="cursor-pointer overflow-hidden rounded-2xl shadow-sm h-72 group relative border border-amberGold-200" onclick="openLightbox('1000379369.jpg')">
+                    <img src="1000379369.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Cattery Flaurum Photo 4">
+                    <div class="absolute inset-0 bg-stone-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-amberGold-300">
+                        <i class="fa-solid fa-magnifying-glass-plus text-3xl"></i>
+                    </div>
+                </div>
+
+                <div class="cursor-pointer overflow-hidden rounded-2xl shadow-sm h-72 group relative border border-amberGold-200" onclick="openLightbox('1000411422.jpg')">
+                    <img src="1000411422.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Cattery Flaurum Photo 5">
+                    <div class="absolute inset-0 bg-stone-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-amberGold-300">
+                        <i class="fa-solid fa-magnifying-glass-plus text-3xl"></i>
+                    </div>
+                </div>
+
+                <div class="cursor-pointer overflow-hidden rounded-2xl shadow-sm h-72 group relative border border-amberGold-200" onclick="openLightbox('1000416482.jpg')">
+                    <img src="1000416482.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Cattery Flaurum Photo 6">
+                    <div class="absolute inset-0 bg-stone-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-amberGold-300">
+                        <i class="fa-solid fa-magnifying-glass-plus text-3xl"></i>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTS SECTION -->
+    <section id="contacts" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Contact Information -->
+                <div class="lg:col-span-5 space-y-8">
+                    <div>
+                        <span class="text-xs sm:text-sm font-semibold tracking-widest text-amberGold-600 uppercase">Свяжитесь с Cattery Flaurum</span>
+                        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mt-2">Консультация и бронирование</h2>
+                        <p class="text-stone-600 text-sm mt-3">С удовольствием ответим на все вопросы о наших питомцах, уходе и условиях приобретения.</p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-amberGold-100 text-amberGold-800 flex items-center justify-center text-xl shrink-0">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-stone-900 text-base">Локация</h4>
+                                <p class="text-stone-600 text-sm">Москва / Доставка по РФ и всему миру</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-amberGold-100 text-amberGold-800 flex items-center justify-center text-xl shrink-0">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-stone-900 text-base">Телефон & WhatsApp</h4>
+                                <a href="tel:+79990000000" class="text-stone-600 hover:text-amberGold-600 text-sm transition-colors">+7 (999) 000-00-00</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-amberGold-100 text-amberGold-800 flex items-center justify-center text-xl shrink-0">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-stone-900 text-base">Email</h4>
+                                <a href="mailto:info@flaurum-cattery.ru" class="text-stone-600 hover:text-amberGold-600 text-sm transition-colors">info@flaurum-cattery.ru</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Networks -->
+                    <div>
+                        <h4 class="font-semibold text-stone-900 text-sm mb-3">Социальные сети Cattery Flaurum:</h4>
+                        <div class="flex gap-3">
+                            <a href="#" class="w-11 h-11 rounded-full bg-stone-100 text-stone-800 flex items-center justify-center hover:bg-stone-900 hover:text-amberGold-300 transition-all border border-amberGold-200"><i class="fa-brands fa-telegram text-lg"></i></a>
+                            <a href="#" class="w-11 h-11 rounded-full bg-stone-100 text-stone-800 flex items-center justify-center hover:bg-stone-900 hover:text-amberGold-300 transition-all border border-amberGold-200"><i class="fa-brands fa-vk text-lg"></i></a>
+                            <a href="#" class="w-11 h-11 rounded-full bg-stone-100 text-stone-800 flex items-center justify-center hover:bg-stone-900 hover:text-amberGold-300 transition-all border border-amberGold-200"><i class="fa-brands fa-whatsapp text-lg"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div class="lg:col-span-7 bg-warmCream p-8 sm:p-10 rounded-3xl border border-amberGold-200/80 shadow-sm">
+                    <h3 class="font-serif text-2xl font-bold text-stone-900 mb-2">Написать заводчику</h3>
+                    <p class="text-stone-600 text-sm mb-6">Заполните форму ниже, чтобы задать вопрос или оставить заявку.</p>
+
+                    <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-stone-700 mb-1">Ваше имя *</label>
+                                <input type="text" required placeholder="Елена" class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:ring-2 focus:ring-amberGold-500 outline-none transition text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-stone-700 mb-1">Телефон / WhatsApp *</label>
+                                <input type="tel" required placeholder="+7 (___) ___-__-__" class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:ring-2 focus:ring-amberGold-500 outline-none transition text-sm">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-stone-700 mb-1">Email</label>
+                            <input type="email" placeholder="example@mail.ru" class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:ring-2 focus:ring-amberGold-500 outline-none transition text-sm">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-stone-700 mb-1">Тема обращения</label>
+                            <select class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:ring-2 focus:ring-amberGold-500 outline-none transition text-sm bg-white">
+                                <option>Приобретение котенка золотой шиншиллы</option>
+                                <option>Консультация по уходу и содержанию</option>
+                                <option>Планируемые пометы</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-stone-700 mb-1">Ваше сообщение</label>
+                            <textarea rows="4" placeholder="Расскажите о ваших пожеланиях..." class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:ring-2 focus:ring-amberGold-500 outline-none transition text-sm"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-3.5 rounded-xl bg-stone-900 text-amberGold-300 font-medium hover:bg-stone-800 transition-colors shadow-md text-sm border border-amberGold-400/30">
+                            Отправить сообщение
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-stone-900 text-white py-12 border-t border-stone-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 pb-8 border-b border-stone-800">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-amberGold-500/20 text-amberGold-400 border border-amberGold-400/30 flex items-center justify-center text-xl font-serif font-bold">
+                        F
+                    </div>
+                    <div>
+                        <span class="font-serif text-xl font-bold tracking-wide text-white">CATTERY FLAURUM</span>
+                        <p class="text-xs text-amberGold-400">Питомник британских кошек • Золотая Шиншилла</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-6 text-sm text-stone-300">
+                    <a href="#about" class="hover:text-amberGold-400 transition-colors">О питомнике</a>
+                    <a href="#cats" class="hover:text-amberGold-400 transition-colors">Наши кошки</a>
+                    <a href="#kittens" class="hover:text-amberGold-400 transition-colors">Котята</a>
+                    <a href="#gallery" class="hover:text-amberGold-400 transition-colors">Галерея</a>
+                    <a href="#contacts" class="hover:text-amberGold-400 transition-colors">Контакты</a>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-stone-400">
+                <p>&copy; Cattery Flaurum. Все права защищены.</p>
+                <p>Британские кошки окраса Gold Chinchilla (NY11, NY12, NY25)</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BOOKING MODAL -->
+    <div id="booking-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl border border-amberGold-200">
+            <button onclick="closeBookingModal()" class="absolute top-5 right-5 text-stone-400 hover:text-stone-600 text-xl w-8 h-8 flex items-center justify-center rounded-full hover:bg-stone-100">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 rounded-full bg-amberGold-100 text-amberGold-800 mx-auto flex items-center justify-center text-xl mb-3">
+                    <i class="fa-solid fa-crown"></i>
+                </div>
+                <h3 class="font-serif text-2xl font-bold text-stone-900">Бронирование котенка</h3>
+                <p class="text-xs text-stone-500 mt-1">Питомник Cattery Flaurum</p>
+            </div>
+
+            <form onsubmit="handleModalSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-stone-700 mb-1">Питомец</label>
+                    <input type="text" id="modal-kitten-name" readonly class="w-full px-4 py-2.5 rounded-xl bg-amberGold-50 border border-amberGold-200 text-stone-900 font-semibold text-sm outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-stone-700 mb-1">Ваше имя *</label>
+                    <input type="text" required placeholder="Анна" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:ring-2 focus:ring-amberGold-500 outline-none text-sm">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-stone-700 mb-1">Телефон / WhatsApp *</label>
+                    <input type="tel" required placeholder="+7 (___) ___-__-__" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:ring-2 focus:ring-amberGold-500 outline-none text-sm">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-stone-700 mb-1">Город проживания</label>
+                    <input type="text" placeholder="Москва" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:ring-2 focus:ring-amberGold-500 outline-none text-sm">
+                </div>
+
+                <button type="submit" class="w-full py-3.5 rounded-xl bg-stone-900 text-amberGold-300 font-medium hover:bg-stone-800 transition-colors text-sm shadow-md mt-2 border border-amberGold-400/30">
+                    Отправить заявку
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- LIGHTBOX MODAL -->
+    <div id="lightbox-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-stone-900/90 backdrop-blur-md cursor-pointer" onclick="closeLightbox()">
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white text-3xl hover:text-amberGold-400">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <img id="lightbox-img" class="max-w-full max-h-[90vh] rounded-2xl object-contain shadow-2xl border border-amberGold-400/40" src="" alt="Cattery Flaurum Enlarge">
+    </div>
+
+    <!-- CUSTOM NOTIFICATION BOX -->
+    <div id="notification-box" class="fixed bottom-6 right-6 z-50 hidden bg-stone-900 text-white px-6 py-4 rounded-2xl shadow-2xl border border-amberGold-400/50 flex items-center gap-3">
+        <i class="fa-solid fa-circle-check text-amberGold-400 text-xl"></i>
+        <div>
+            <h4 class="text-sm font-bold text-amberGold-300" id="notification-title">Успешно!</h4>
+            <p class="text-xs text-stone-300" id="notification-message">Заявка принята.</p>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.className = 'fa-solid fa-bars text-xl';
+            } else {
+                menuIcon.className = 'fa-solid fa-xmark text-xl';
+            }
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+        // Kitten Filter Logic
+        function filterKittens(status) {
+            const cards = document.querySelectorAll('.kitten-card');
+            const buttons = document.querySelectorAll('.kitten-filter-btn');
+
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-stone-900', 'text-amberGold-300', 'border');
+                btn.classList.add('bg-stone-100', 'text-stone-700');
+            });
+
+            event.target.classList.remove('bg-stone-100', 'text-stone-700');
+            event.target.classList.add('bg-stone-900', 'text-amberGold-300', 'border', 'border-amberGold-400/30');
+
+            cards.forEach(card => {
+                if (status === 'all' || card.dataset.status === status) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Modal Open/Close Logic
+        function openBookingModal(kittenName = 'Любой котенок Cattery Flaurum') {
+            document.getElementById('modal-kitten-name').value = kittenName;
+            document.getElementById('booking-modal').classList.remove('hidden');
+        }
+
+        function closeBookingModal() {
+            document.getElementById('booking-modal').classList.add('hidden');
+        }
+
+        // Lightbox Logic
+        function openLightbox(imageSrc) {
+            document.getElementById('lightbox-img').src = imageSrc;
+            document.getElementById('lightbox-modal').classList.remove('hidden');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox-modal').classList.add('hidden');
+        }
+
+        // Show Notification
+        function showNotification(title, message) {
+            const notif = document.getElementById('notification-box');
+            document.getElementById('notification-title').innerText = title;
+            document.getElementById('notification-message').innerText = message;
+
+            notif.classList.remove('hidden');
+            setTimeout(() => {
+                notif.classList.add('hidden');
+            }, 4000);
+        }
+
+        // Form Submit
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            showNotification('Спасибо за обращение!', 'Мы ответим вам в ближайшее время.');
+            e.target.reset();
+        }
+
+        function handleModalSubmit(e) {
+            e.preventDefault();
+            closeBookingModal();
+            showNotification('Заявка принята!', 'Спасибо за интерес к питомнику Cattery Flaurum.');
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>
