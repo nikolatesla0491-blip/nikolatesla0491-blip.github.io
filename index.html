@@ -62,6 +62,13 @@
         .gold-border-glow {
             box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
         }
+        /* Стили для настраиваемой приветственной фоновой зоны */
+        .welcome-hero-bg {
+            background-image: url('header-bg.jpg'); /* Имя файла вашей визитки/фона в GitHub */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
     </style>
 </head>
 <body class="bg-warmCream text-stone-800 font-sans antialiased selection:bg-amberGold-500 selection:text-white">
@@ -119,8 +126,28 @@
         </div>
     </header>
 
+    <!-- WELCOME / CUSTOM BACKGROUND BANNER SECTION -->
+    <section class="relative pt-32 pb-12 sm:py-20 md:py-24 welcome-hero-bg flex items-center justify-center shadow-inner">
+        <!-- Полупрозрачная подложка для читаемости, если фон слишком яркий (можно убрать или настроить прозрачность) -->
+        <div class="absolute inset-0 bg-stone-900/20 backdrop-blur-[2px]"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <div class="glass-card max-w-3xl mx-auto p-6 sm:p-10 rounded-3xl shadow-xl border border-amberGold-300/60">
+                <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amberGold-100 border border-amberGold-300/60 text-amberGold-800 text-xs sm:text-sm font-semibold tracking-wide uppercase mb-4">
+                    <i class="fa-solid fa-crown text-amberGold-600"></i> Добро пожаловать
+                </span>
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-stone-900 leading-tight">
+                    Cattery Flaurum <span class="gold-gradient-text block mt-1">Золотая Шиншилла</span>
+                </h1>
+                <p class="text-sm sm:text-base text-stone-700 mt-4 max-w-xl mx-auto leading-relaxed">
+                    Элитный монопородный питомник британских короткошерстных и длинношерстных кошек эксклюзивных золотых окрасов с изумрудными глазами.
+                </p>
+            </div>
+        </div>
+    </section>
+
     <!-- HERO SECTION -->
-    <section class="relative pt-28 pb-16 md:pt-36 md:pb-28 overflow-hidden bg-gradient-to-b from-amberGold-100/60 via-warmCream to-white">
+    <section class="relative py-16 md:py-24 overflow-hidden bg-gradient-to-b from-amberGold-100/60 via-warmCream to-white">
         <div class="absolute inset-0 z-0 opacity-40 pointer-events-none">
             <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-amberGold-200 blur-3xl"></div>
             <div class="absolute top-1/2 -left-24 w-80 h-80 rounded-full bg-amberGold-300/30 blur-3xl"></div>
@@ -133,11 +160,11 @@
                     <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amberGold-100 border border-amberGold-300/60 text-amberGold-800 text-xs sm:text-sm font-semibold tracking-wide uppercase">
                         <i class="fa-solid fa-gem text-amberGold-600"></i> Элитные драгоценные окрасы
                     </div>
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-stone-900 leading-tight">
-                        Cattery Flaurum <span class="gold-gradient-text block mt-1">Золотая Шиншилла</span>
-                    </h1>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-stone-900 leading-tight">
+                        Совершенство в каждой детали и благородный тип
+                    </h2>
                     <p class="text-base sm:text-lg text-stone-600 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
-                        Монопородный питомник британских короткошерстных и длинношерстных кошек эксклюзивных золотых окрасов <span class="font-semibold text-stone-800">NY 11, NY 12, AU 12, NY 25</span> с завораживающими изумрудными глазами.
+                        Монопородный питомник британских кошек эксклюзивных золотых окрасов <span class="font-semibold text-stone-800">NY 11, NY 12, AU 12, NY 25</span> с завораживающими изумрудными глазами.
                     </p>
                     <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
                         <a href="#kittens" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-stone-900 text-amberGold-300 font-medium shadow-lg hover:bg-stone-800 hover:shadow-xl transition-all text-center border border-amberGold-400/30">
@@ -182,7 +209,7 @@
                                         <i class="fa-solid fa-award text-amberGold-600"></i>
                                     </div>
                                     <div>
-                                        <h2 class="text-sm font-bold text-stone-900">Изумрудный взгляд и золотая шубка</h2>
+                                        <h3 class="text-sm font-bold text-stone-900">Изумрудный взгляд и золотая шубка</h3>
                                         <p class="text-xs text-stone-600">Производитель питомника Cattery Flaurum</p>
                                     </div>
                                 </div>
@@ -272,7 +299,7 @@
                 <p class="text-stone-600 text-sm mt-3">Производители с безупречным типом и изумрудными глазами</p>
             </div>
 
-            <!-- Adult Cats Grid using photos 1000448723.jpg, 1000449467.jpg, 1000218463.jpg -->
+            <!-- Adult Cats Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="adults-container">
                 
                 <!-- Adult Cat 1 -->
@@ -379,7 +406,7 @@
                 <button onclick="filterKittens('reserved')" class="kitten-filter-btn px-5 py-2 rounded-full text-xs sm:text-sm font-medium bg-stone-100 text-stone-700 hover:bg-amberGold-100 transition-all">Забронированы</button>
             </div>
 
-            <!-- Kittens Grid using photos 1000379369.jpg, 1000411422.jpg, 1000416482.jpg -->
+            <!-- Kittens Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="kittens-container">
                 
                 <!-- Kitten 1 -->
@@ -488,7 +515,7 @@
                 <p class="text-stone-600 text-sm mt-3">Нажмите на любую фотографию для полноэкранного просмотра</p>
             </div>
 
-            <!-- Gallery Grid with all 6 provided images -->
+            <!-- Gallery Grid -->
             <div class="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
                 
                 <div class="cursor-pointer overflow-hidden rounded-2xl shadow-sm h-72 group relative border border-amberGold-200" onclick="openLightbox('1000448723.jpg')">
